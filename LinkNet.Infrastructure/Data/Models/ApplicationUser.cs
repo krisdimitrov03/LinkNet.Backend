@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LinkNet.Infrastructure.Data.Models
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
         [Required, StringLength(50)]
         public string FirstName { get; set; }
@@ -20,7 +21,8 @@ namespace LinkNet.Infrastructure.Data.Models
         public string Biography { get; set; }
 
         [Required]
-        public DateOnly Birthday { get; set; }
+        [Column(TypeName = "DATE")]
+        public DateTime Birthday { get; set; }
 
         [Required]
         public int OccupationId { get; set; }

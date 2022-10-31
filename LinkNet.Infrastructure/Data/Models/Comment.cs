@@ -19,12 +19,6 @@ namespace LinkNet.Infrastructure.Data.Models
         public ApplicationUser Creator { get; set; }
 
         [Required]
-        public string PostId { get; set; }
-
-        [ForeignKey(nameof(PostId))]
-        public Post Post { get; set; }
-
-        [Required]
         public DateTime DateTimeCreated { get; set; }
     }
 }

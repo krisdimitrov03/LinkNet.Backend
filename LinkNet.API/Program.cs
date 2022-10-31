@@ -1,8 +1,20 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using LinkNet.Infrastructure.Data;
+using LinkNet.Infrastructure.Data.Models;
+using LinkNet.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("LinkNetAPIContextConnection") ?? throw new InvalidOperationException("Connection string 'LinkNetAPIContextConnection' not found.");
+
+builder.Services.AddDbContext<LinkNetAPIContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<LinkNetAPIContext>();
 
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -28,5 +40,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//Seeder.Seed(app);
 
 app.Run();

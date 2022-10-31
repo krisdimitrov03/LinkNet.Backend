@@ -13,11 +13,5 @@ namespace LinkNet.Infrastructure.Data.Models
 
         [ForeignKey(nameof(UserId))]
         public ApplicationUser User { get; set; }
-
-        [Required]
-        public string PostId { get; set; }
-
-        [ForeignKey(nameof(PostId))]
-        public Post Post { get; set; }
     }
 }

@@ -22,10 +22,11 @@ namespace LinkNet.Infrastructure.Data.Models
         [StringLength(350)]
         public string Text { get; set; }
 
-        public IEnumerable<PostImage> PostsImages { get; set; }
+        public IEnumerable<Image> Images { get; set; }
 
         public IEnumerable<Like> Likes { get; set; }
 
         public IEnumerable<Comment> Comments { get; set; }
+
     }
 }
