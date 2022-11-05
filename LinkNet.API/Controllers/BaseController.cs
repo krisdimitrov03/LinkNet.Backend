@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LinkNet.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class BaseController : ControllerBase
     {

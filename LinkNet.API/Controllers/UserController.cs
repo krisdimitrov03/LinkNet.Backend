@@ -32,5 +32,11 @@ namespace LinkNet.API.Controllers
                 Token = token
             });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Test()
+        {
+            return Ok("Hello, World!");
+        }
     }
 }
