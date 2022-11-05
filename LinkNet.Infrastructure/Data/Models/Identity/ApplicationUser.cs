@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkNet.Infrastructure.Data.Models
+namespace LinkNet.Infrastructure.Data.Models.Identity
 {
     public class ApplicationUser : IdentityUser
     {

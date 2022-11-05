@@ -1,5 +1,4 @@
-﻿using LinkNet.Infrastructure.Data.Models.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkNet.Infrastructure.Data.Models
+namespace LinkNet.Infrastructure.Data.Models.Identity
 {
-    public class Story
+    public class TokenLog
     {
         [Key]
         public string Id { get; set; } = Guid.NewGuid().ToString();
@@ -21,6 +20,6 @@ namespace LinkNet.Infrastructure.Data.Models
         public ApplicationUser User { get; set; }
 
         [Required]
-        public string Content { get; set; }
+        public string Token { get; set; }
     }
 }

@@ -1,3 +1,33 @@
 ﻿[
-
+  {
+    "id": "1368c2dc-5e13-41d3-a664-d541dd20f140",
+    "firstName": "Petar",
+    "lastName": "Vasilev",
+    "userName": "_pet.vasilevv_",
+    "normalizedUserName": "_PET.VASILEVV_",
+    "email": "vasilev.petar@gmail.com",
+    "normalizedEmail": "VASILEV.PETAR@GMAIL.COM",
+    "biography": "Some biography",
+    "birthday": "1995-03-11",
+    "occupationId": 3,
+    "image": {
+      "id": "41eca7a2-1280-440d-8bfe-ee0d5637ad4a",
+      "url": "https://bit.ly/3fkYRnk"
+    },
+    "passwordHash": "GV1ZLW8e1W2SOQ5",
+    "tags": [
+      {
+        "id": "64595a04-1ce1-4433-b260-90c5a3770e55",
+        "text": "Team Worker"
+      },
+      {
+        "id": "8427bcc9-c3c8-426a-b832-74ba56e17e32",
+        "text": "Sportsman"
+      },
+      {
+        "id": "ea535933-19e3-4cd4-8a6e-5884da6b3de8",
+        "text": "Fast Learner"
+      }
+    ]
+  }
 ]

@@ -1,4 +1,5 @@
 ﻿using LinkNet.Infrastructure.Data.Models;
+using LinkNet.Infrastructure.Data.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,8 @@ public class LinkNetAPIContext : IdentityDbContext<ApplicationUser>
     public DbSet<Post> Posts { get; set; }
     public DbSet<Story> Stories { get; set; }
     public DbSet<Tag> Tags { get; set; }
+
+    public DbSet<TokenLog> TokenLogs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

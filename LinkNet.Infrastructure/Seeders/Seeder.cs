@@ -1,5 +1,6 @@
 ﻿using LinkNet.Infrastructure.Data;
 using LinkNet.Infrastructure.Data.Models;
+using LinkNet.Infrastructure.Data.Models.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -21,10 +22,10 @@ namespace LinkNet.Infrastructure.Seeders
 
                 context.Database.EnsureCreated();
 
-                AddData<ApplicationUser>(context, DataConstants.Users);
-                AddData<Post>(context, DataConstants.Posts);
                 AddData<Occupation>(context, DataConstants.Occupations);
-                AddData<Story>(context, DataConstants.Stories);
+                AddData<ApplicationUser>(context, DataConstants.Users);
+                //AddData<Post>(context, DataConstants.Posts);
+                //AddData<Story>(context, DataConstants.Stories);
             }
         }
 
