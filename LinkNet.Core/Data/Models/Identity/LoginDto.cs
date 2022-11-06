@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkNet.Core.Data.Models
+namespace LinkNet.Core.Data.Models.Identity
 {
     public class LoginDto
     {

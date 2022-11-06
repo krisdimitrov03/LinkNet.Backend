@@ -1,10 +1,17 @@
-﻿using LinkNet.Infrastructure.Data.Models.Identity;
+﻿using LinkNet.Core.Contracts;
+using LinkNet.Core.Data.Models.Identity;
+using LinkNet.Core.Settings;
+using LinkNet.Infrastructure.Data.Models.Identity;
 using LinkNet.Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace LinkNet.Core.Services
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         private readonly IApplicationDbRepository repo;
 
@@ -17,7 +24,7 @@ namespace LinkNet.Core.Services
         {
             try
             {
-                await repo.AddAsync<TokenLog>(new TokenLog
+                await repo.AddAsync(new TokenLog
                 {
                     UserId = userId,
                     Token = token
@@ -67,29 +74,29 @@ namespace LinkNet.Core.Services
             }
         }
 
-        //public async Task<string> Generate(JwtTokenUserDataModel data, JwtSettings jwtSettings)
-        //{
-        //    var tokenHandler = new JwtSecurityTokenHandler();
-        //    var key = Encoding.ASCII.GetBytes(jwtSettings.Secret);
-        //    var securityKey = new SymmetricSecurityKey(key);
-        //    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+        public async Task<string> Generate(JwtUserDto data, JwtSettings jwtSettings)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(jwtSettings.Secret);
+            var securityKey = new SymmetricSecurityKey(key);
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-        //    var tokenDescriptor = new SecurityTokenDescriptor
-        //    {
-        //        Subject = new ClaimsIdentity(new Claim[]
-        //        {
-        //            new Claim("id", data.Id),
-        //            new Claim("username", data.Username),
-        //            new Claim("profilePicture", data.ProfilePicture),
-        //            new Claim("roles", data.Roles)
-        //        }),
-        //        Expires = DateTime.Now.AddDays(5),
-        //        SigningCredentials = credentials
-        //    };
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim("id", data.Id),
+                    new Claim("username", data.Username),
+                    new Claim("profilePicture", data.ProfilePicture),
+                    new Claim("roles", data.Roles)
+                }),
+                Expires = DateTime.Now.AddDays(5),
+                SigningCredentials = credentials
+            };
 
-        //    var token = tokenHandler.CreateToken(tokenDescriptor);
+            var token = tokenHandler.CreateToken(tokenDescriptor);
 
-        //    return tokenHandler.WriteToken(token);
-        //}
+            return tokenHandler.WriteToken(token);
+        }
     }
 }

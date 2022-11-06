@@ -9,6 +9,8 @@ using LinkNet.Infrastructure.Data.Repositories;
 using LinkNet.Core.Contracts;
 using LinkNet.Core.Services;
 using LinkNet.Infrastructure.Data.Models.Identity;
+using System.Text;
+using LinkNet.Core.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("LinkNetAPIContextConnection") ?? throw new InvalidOperationException("Connection string 'LinkNetAPIContextConnection' not found.");
@@ -16,12 +18,21 @@ var connectionString = builder.Configuration.GetConnectionString("LinkNetAPICont
 builder.Services.AddDbContext<LinkNetAPIContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<LinkNetAPIContext>();
+
+var jwtSettingsSection = builder.Configuration.GetSection("JwtSettings");
+builder.Services.Configure<JwtSettings>(jwtSettingsSection);
+
+// Configure JWT authentication
+var jwtSettings = jwtSettingsSection.Get<JwtSettings>();
+var key = Encoding.ASCII.GetBytes(jwtSettings.Secret);
 
 builder.Services
     .AddScoped<IApplicationDbRepository, ApplicationDbRepository>()
-    .AddScoped<IUserService, UserService>();
+    .AddScoped<IUserService, UserService>()
+    .AddScoped<ITokenService, TokenService>();
 
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

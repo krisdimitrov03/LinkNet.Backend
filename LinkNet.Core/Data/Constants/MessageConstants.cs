@@ -9,5 +9,6 @@ namespace LinkNet.Core.Data.Constants
     public class MessageConstants
     {
         public const string InvalidLoginData = "Incorrect username or password.";
+        public const string SuccessStatus = "Success";
     }
 }
