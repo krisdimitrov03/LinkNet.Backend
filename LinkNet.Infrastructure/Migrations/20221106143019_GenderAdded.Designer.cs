@@ -4,6 +4,7 @@ using LinkNet.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LinkNet.Infrastructure.Migrations
 {
     [DbContext(typeof(LinkNetAPIContext))]
-    partial class LinkNetAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20221106143019_GenderAdded")]
+    partial class GenderAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,6 +79,7 @@ namespace LinkNet.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Biography")
+                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 

@@ -17,8 +17,14 @@ namespace LinkNet.Infrastructure.Data.Models.Identity
         [Required, StringLength(50)]
         public string LastName { get; set; }
 
-        [Required, StringLength(150)]
-        public string Biography { get; set; }
+        [Required]
+        public int GenderId { get; set; }
+
+        [ForeignKey(nameof(GenderId))]
+        public Gender Gender { get; set; }
+
+        [StringLength(150)]
+        public string? Biography { get; set; }
 
         [Required]
         [Column(TypeName = "DATE")]

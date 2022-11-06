@@ -23,6 +23,7 @@ namespace LinkNet.Infrastructure.Seeders
                 context.Database.EnsureCreated();
 
                 AddData<Occupation>(context, DataConstants.Occupations);
+                AddData<Gender>(context, DataConstants.Genders);
                 AddData<ApplicationUser>(context, DataConstants.Users);
                 //AddData<Post>(context, DataConstants.Posts);
                 //AddData<Story>(context, DataConstants.Stories);

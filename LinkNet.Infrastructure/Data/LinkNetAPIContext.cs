@@ -20,6 +20,7 @@ public class LinkNetAPIContext : IdentityDbContext<ApplicationUser>
     public DbSet<Post> Posts { get; set; }
     public DbSet<Story> Stories { get; set; }
     public DbSet<Tag> Tags { get; set; }
+    public DbSet<Gender> Genders { get; set; }
 
     public DbSet<TokenLog> TokenLogs { get; set; }
 

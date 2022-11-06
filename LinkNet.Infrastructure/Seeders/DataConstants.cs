@@ -14,5 +14,6 @@ namespace LinkNet.Infrastructure.Seeders
         public const string Occupations = "occupations.json";
         public const string Posts = "posts.json";
         public const string Stories = "stories.json";
+        public const string Genders = "genders.json";
     }
 }
