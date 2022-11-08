@@ -33,7 +33,8 @@ var key = Encoding.ASCII.GetBytes(jwtSettings.Secret);
 builder.Services
     .AddScoped<IApplicationDbRepository, ApplicationDbRepository>()
     .AddScoped<IUserService, UserService>()
-    .AddScoped<ITokenService, TokenService>();
+    .AddScoped<ITokenService, TokenService>()
+    .AddScoped<IPostService, PostService>();
 
 // Add services to the container.
 builder.Services.AddAuthentication(options =>
